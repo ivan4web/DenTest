@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?
 include("inc/config.inc.php");
 if(isset($_POST['iko1']))
@@ -32,3 +33,6 @@ if(!isset($_SESSION['userid'])){
 
 // мои изменения
 ?>
+=======
+asdasdads test
+>>>>>>> parent of 2e4514d (first)
