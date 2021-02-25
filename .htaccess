@@ -1,0 +1,30 @@
+AddType application/x-httpd-php .htm .html
+RewriteEngine On
+#RewriteCond %{HTTPS} =on 
+#RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [QSA,L]
+ErrorDocument 404 /404.php 
+ErrorDocument 401 /401.php
+AddDefaultCharset UTF-8
+RewriteBase /
+RewriteCond %{HTTP_HOST} ^www.zamenim\.ru$ [NC]
+RewriteRule ^(.*)$ https://zamenim.ru/$1 [R=301,L]
+
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\ HTTP/
+RewriteRule ^index\.php$ https://zamenim.ru/ [R=301,L]
+RewriteRule ^index\.html$ https://zamenim.ru/ [R=301,L]
+
+
+RewriteRule ^(.*)\.htm$ index.php?cat=$1&%{QUERY_STRING} [NC]
+
+RewriteRule ^(.*)_(.*)\.html$ index.php?id=$1&goodname=$1&%{QUERY_STRING} [NC]
+RewriteRule ^(.*)\.html$ index.php?ordername=$1&%{QUERY_STRING} [NC]
+REWRITERULE ^([^/]*)/$ index.php?val=$1&%{QUERY_STRING} [NC,L]
+REWRITERULE ^([^/]*)/([^/]*)/$ index.php?val=$1&id=$2&%{QUERY_STRING} [NC,L]
+REWRITERULE ^([^/]*)/([^/]*)/([^/]*)/$ index.php?val=$1&id=$2&pid=$3&%{QUERY_STRING} [NC,L]
+REWRITERULE ^([^/]*)/([^/]*)/([^/]*)/([^/]*)/$ index.php?val=$1&id=$2&pid=$3&ppid=$4&%{QUERY_STRING} [NC,L]
+REWRITERULE ^([^/]*)/([^/]*)/([^/]*)/([^/]*)/([^/]*)/$ index.php?val=$1&id=$2&pid=$3&ppid=$4&pppid=$5&%{QUERY_STRING} [NC,L]
+
+REWRITERULE ^([^/]*)/([^/]*)/([^/]*)/$ index.php?url=$1&suburl=$2&wurl=$3&%{QUERY_STRING} [NC,L]
+#REWRITERULE ^([^/]*)$ index.php?q=$1&%{QUERY_STRING} [NC,L]
+
